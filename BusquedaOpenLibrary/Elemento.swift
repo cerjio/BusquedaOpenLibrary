@@ -12,9 +12,9 @@ class Elemento: NSObject {
     
     var autor: String? = ""
     var titulo: String? = ""
-    var portada: UIImage? = nil
+    var portada: String? = ""
     
-    init(a: String, t: String, p: UIImage?) {
+    init(a: String, t: String, p: String?) {
         self.autor = a
         self.titulo = t
         self.portada = p

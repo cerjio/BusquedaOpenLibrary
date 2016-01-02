@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 protocol ChildViewControllerDelegate
 {
     func childViewControllerResponse(elemento: Elemento)
@@ -97,9 +98,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
                         
                          self.elementoEncontrado = Elemento(a: self.autoresValor.text!, t: self.tituloValor.text!, p: nil)
                         
-                        if let checkedUrl = NSURL(string: "http://covers.openlibrary.org/b/isbn/" + searchBar.text! + ".jpg") {
+                        if let checkedUrl = NSURL(string: "http://covers.openlibrary.org/b/isbn/" + searchBar.text! + ".jpg?default=false") {
                             self.portadaImagen.contentMode = .ScaleAspectFit
-                            self.elementoEncontrado?.portada = self.portadaImagen.image
                             self.downloadImage(checkedUrl)
                         }
                         //print("End of code. The image will continue downloading in the background and it will be loaded when it ends.")
@@ -117,6 +117,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
                             
                             self.autoresValor.text = authorsArray.joinWithSeparator(",")
                             self.autoresValor.sizeToFit()
+                            self.elementoEncontrado?.autor = self.autoresValor.text
                             
                         }
                         
@@ -172,7 +173,16 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     /* Funciones de referencia tomadas de http://stackoverflow.com/questions/24231680/loading-image-from-url */
     
     func getDataFromUrl(url:NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void)) {
+        
         NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
+            
+            if let httpResponse = response as? NSHTTPURLResponse {
+               
+                if httpResponse.statusCode == 404 {
+                    return
+                }
+            }
+            
             completion(data: data, response: response, error: error)
             }.resume()
     }
@@ -182,6 +192,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
                 guard let data = data where error == nil else { return }
                 self.portadaImagen.image = UIImage(data: data)
+                 self.elementoEncontrado?.portada = url.absoluteString
             }
         }
     }

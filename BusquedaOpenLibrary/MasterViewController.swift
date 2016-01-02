@@ -38,40 +38,18 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         // Dispose of any resources that can be recreated.
     }
 
-    func insertNewObject(sender: AnyObject) {
-        let context = self.fetchedResultsController.managedObjectContext
-        let entity = self.fetchedResultsController.fetchRequest.entity!
-        let newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name!, inManagedObjectContext: context)
-             
-        // If appropriate, configure the new managed object.
-        // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-        newManagedObject.setValue(NSDate(), forKey: "timeStamp")
-        
-             
-        // Save the context.
-        do {
-            try context.save()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            //print("Unresolved error \(error), \(error.userInfo)")
-            abort()
-        }
-    }
-
     // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print("entre")
-        if segue.identifier == "showDetail" {
-            if let indexPath = self.tableView.indexPathForSelectedRow {
+       
+        
+        if let indexPath = self.tableView.indexPathForSelectedRow {
             let object = self.fetchedResultsController.objectAtIndexPath(indexPath)
-                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = object
-                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-                controller.navigationItem.leftItemsSupplementBackButton = true
-            }
+            let controller = segue.destinationViewController as! DetailViewController
+            controller.detailItem = object as? ElementoEntry
+            
         }
+
     }
 
     // MARK: - Table View
@@ -215,20 +193,19 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     func childViewControllerResponse(elemento: Elemento) {
-        print(elemento.titulo)
+    
         
         let context = self.fetchedResultsController.managedObjectContext
         let entity = self.fetchedResultsController.fetchRequest.entity!
-        let newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name!, inManagedObjectContext: context)
+        let newManagedObject : ElementoEntry = NSEntityDescription.insertNewObjectForEntityForName(entity.name!, inManagedObjectContext: context) as! ElementoEntry
         
         // If appropriate, configure the new managed object.
         // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
         newManagedObject.setValue(elemento.titulo, forKey: "titulo")
-        newManagedObject.setValue(elemento.autor, forKey: "autor")
+        newManagedObject.autor = elemento.autor
         if elemento.portada != nil {
-            newManagedObject.setValue( UIImageJPEGRepresentation(elemento.portada!, 1.0), forKey: "portada")
+            newManagedObject.portada = elemento.portada!
         }
-        
         
         // Save the context.
         do {
