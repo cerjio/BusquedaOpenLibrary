@@ -25,8 +25,11 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     var delegate: ChildViewControllerDelegate?
     
+    let urlString : String = "https://openlibrary.org/api/books?jscmd=data&format=json&bibkeys=ISBN:"
+    let documentsDirectory : String = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
+    var fileName : String?
     
-     let urlString : String = "https://openlibrary.org/api/books?jscmd=data&format=json&bibkeys=ISBN:"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -98,7 +101,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
                         
                          self.elementoEncontrado = Elemento(a: self.autoresValor.text!, t: self.tituloValor.text!, p: nil)
                         
-                        if let checkedUrl = NSURL(string: "http://covers.openlibrary.org/b/isbn/" + searchBar.text! + ".jpg?default=false") {
+                         self.fileName = searchBar.text! + ".jpg"
+                        
+                        if let checkedUrl = NSURL(string: "http://covers.openlibrary.org/b/isbn/" + self.fileName! + "?default=false") {
                             self.portadaImagen.contentMode = .ScaleAspectFit
                             self.downloadImage(checkedUrl)
                         }
@@ -191,8 +196,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         getDataFromUrl(url) { (data, response, error)  in
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
                 guard let data = data where error == nil else { return }
+                
                 self.portadaImagen.image = UIImage(data: data)
-                 self.elementoEncontrado?.portada = url.absoluteString
+                
             }
         }
     }
@@ -207,12 +213,20 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     @IBAction func backgroundTap() {
         searchBar.resignFirstResponder()
     }
-    /*@IBAction func backgroundTap(sender: UIControl) {
-        searchBar.resignFirstResponder()
-        
-    }*/
+
 
     @IBAction func addItemToList() {
+        let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+        
+        
+        let imagePath = documentsURL.URLByAppendingPathComponent(self.fileName!)
+        
+       let success = UIImageJPEGRepresentation(self.portadaImagen.image!, 1.0)!.writeToFile(imagePath.path!, atomically: true)
+        
+        if success {
+            self.elementoEncontrado?.portada = imagePath.path!
+        }
+
         self.delegate?.childViewControllerResponse(elementoEncontrado!)
         self.dismissViewControllerAnimated(true, completion: nil)
     }

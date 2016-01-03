@@ -20,6 +20,7 @@
 		DE5477DA1C38699200031AD1 /* default-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5477D91C38699200031AD1 /* default-placeholder.png */; settings = {ASSET_TAGS = (); }; };
 		DE5477EF1C38883600031AD1 /* ElementoEntry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5477ED1C38883600031AD1 /* ElementoEntry+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
 		DE5477F01C38883600031AD1 /* ElementoEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5477EE1C38883600031AD1 /* ElementoEntry.swift */; settings = {ASSET_TAGS = (); }; };
+		DEA1A1751C3988030031B074 /* logo_OL-lg.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA1A1741C3988030031B074 /* logo_OL-lg.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		DE5477D91C38699200031AD1 /* default-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-placeholder.png"; sourceTree = "<group>"; };
 		DE5477ED1C38883600031AD1 /* ElementoEntry+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ElementoEntry+CoreDataProperties.swift"; path = "../ElementoEntry+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DE5477EE1C38883600031AD1 /* ElementoEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ElementoEntry.swift; path = ../ElementoEntry.swift; sourceTree = "<group>"; };
+		DEA1A1741C3988030031B074 /* logo_OL-lg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_OL-lg.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 		DE5477D81C38698500031AD1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DEA1A1741C3988030031B074 /* logo_OL-lg.png */,
 				DE5477D91C38699200031AD1 /* default-placeholder.png */,
 			);
 			name = Images;
@@ -167,6 +170,7 @@
 				DE1B575D1C3495CA00E53E79 /* Assets.xcassets in Resources */,
 				DE1B57681C34A00200E53E79 /* dismiss-small.png in Resources */,
 				DE5477DA1C38699200031AD1 /* default-placeholder.png in Resources */,
+				DEA1A1751C3988030031B074 /* logo_OL-lg.png in Resources */,
 				DE1B575B1C3495CA00E53E79 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

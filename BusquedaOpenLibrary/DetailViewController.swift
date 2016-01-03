@@ -38,10 +38,12 @@ class DetailViewController: UIViewController {
                 
                 if detail.portada != nil {
                     
-                    if let checkedUrl = NSURL(string: detail.portada!) {
+                    portadaImagen.image = UIImage(contentsOfFile: detail.portada!)
+                    
+                    /*if let checkedUrl = NSURL(string: detail.portada!) {
                         portadaImagen.contentMode = .ScaleAspectFit
                         self.downloadImage(checkedUrl)
-                    }
+                    }*/
                     
                 }
                
@@ -62,23 +64,5 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    /* Funciones de referencia tomadas de http://stackoverflow.com/questions/24231680/loading-image-from-url */
-    
-    func getDataFromUrl(url:NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void)) {
-        NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
-            completion(data: data, response: response, error: error)
-            }.resume()
-    }
-    
-    func downloadImage(url: NSURL){
-        getDataFromUrl(url) { (data, response, error)  in
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                guard let data = data where error == nil else { return }
-                self.portada.image = UIImage(data: data)
-            }
-        }
-    }
-
-
 }
 

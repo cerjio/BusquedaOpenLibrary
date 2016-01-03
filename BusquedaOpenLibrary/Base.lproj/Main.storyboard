@@ -13,6 +13,7 @@
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Pmd-2v-anx">
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
+                        <color key="backgroundColor" white="0.4170399904" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
                         <segue destination="7bK-jq-Zjz" kind="relationship" relationship="rootViewController" id="tsl-Nk-0bq"/>
@@ -124,19 +125,19 @@
                                 <exclude reference="Nb1-xv-kTa"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="mDp-kg-Q9t"/>
-                                <exclude reference="tV8-xC-sEM"/>
-                                <exclude reference="OMC-HA-pOb"/>
-                                <exclude reference="i3v-E1-pvq"/>
-                                <exclude reference="Rs5-p8-DFi"/>
-                                <exclude reference="uDR-zF-HUg"/>
-                                <exclude reference="vN6-GK-YsY"/>
                                 <exclude reference="o6M-vQ-xgG"/>
                                 <exclude reference="uHb-Tn-AEh"/>
+                                <exclude reference="OMC-HA-pOb"/>
+                                <exclude reference="i3v-E1-pvq"/>
                                 <exclude reference="8bK-J1-mAo"/>
                                 <exclude reference="gCA-HT-EeJ"/>
                                 <exclude reference="nD3-Tj-8zn"/>
                                 <exclude reference="spK-XL-tpr"/>
+                                <exclude reference="Rs5-p8-DFi"/>
+                                <exclude reference="uDR-zF-HUg"/>
+                                <exclude reference="vN6-GK-YsY"/>
+                                <exclude reference="mDp-kg-Q9t"/>
+                                <exclude reference="tV8-xC-sEM"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -148,19 +149,19 @@
                                 <include reference="Nb1-xv-kTa"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="mDp-kg-Q9t"/>
-                                <include reference="tV8-xC-sEM"/>
-                                <include reference="OMC-HA-pOb"/>
-                                <include reference="i3v-E1-pvq"/>
-                                <include reference="Rs5-p8-DFi"/>
-                                <include reference="uDR-zF-HUg"/>
-                                <include reference="vN6-GK-YsY"/>
                                 <include reference="o6M-vQ-xgG"/>
                                 <include reference="uHb-Tn-AEh"/>
+                                <include reference="OMC-HA-pOb"/>
+                                <include reference="i3v-E1-pvq"/>
                                 <include reference="8bK-J1-mAo"/>
                                 <include reference="gCA-HT-EeJ"/>
                                 <include reference="nD3-Tj-8zn"/>
                                 <include reference="spK-XL-tpr"/>
+                                <include reference="Rs5-p8-DFi"/>
+                                <include reference="uDR-zF-HUg"/>
+                                <include reference="vN6-GK-YsY"/>
+                                <include reference="mDp-kg-Q9t"/>
+                                <include reference="tV8-xC-sEM"/>
                             </mask>
                         </variation>
                     </view>
